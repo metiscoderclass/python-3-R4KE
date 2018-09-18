@@ -16,7 +16,7 @@ def new_List():
     newList = input("Name the new list: ")
     return newList
 
-def test_Dat_Ass():
+def test():
     #test
 
 def main():
@@ -25,7 +25,7 @@ def main():
     print("1 = add list")
     print("2 = chooce list")
     print("3 = add words")
-    print("4 = test dat ass")
+    print("4 = test")
     print("5 = quit")
     choice = input("Choose an option!")
     while choice != 5:
@@ -36,7 +36,7 @@ def main():
         elif choice == 3:
             #add words
         elif choice == 4:
-            #test dat ass
+            #test
             
 read_Words("wordList.txt")
 main()
