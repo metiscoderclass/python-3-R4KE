@@ -3,7 +3,7 @@ import os
 screenWidth = 25;
 
 def clear_Screen():
-    os.system('clear')
+    os.system('cls')
     
 def read_Words(wordList):
     wordList = open(wordList)
@@ -11,32 +11,47 @@ def read_Words(wordList):
         if not item == '':
             word1, word2 = item.strip('\n').split("=")
             #print(word1 + " = " + word2)
+            return(word1, word2)
 
 def new_List():
+    clear_Screen()
     newList = input("Name the new list: ")
+    read_Words(newList)
     return newList
 
-def test():
-    #test
+def choose_List():
+    clear_Screen()
+    newList = input("Choose list: ")
+    read_Words(newList)
+    return newList
+
+def manage_List():
+    clear_Screen()
+    print("1 = choose list")
+    print("2 = make list")
+    print("3 = remove list")
+    print("4 = go back")
+    choice = input("Choose an option: ")
+    if choice == "1":
+        choose_List()
+    elif choice == "2":
+        new_List
+
+def start_Test():
+    print("test")
 
 def main():
     #show list
-    clear_Screen()
-    print("1 = add list")
-    print("2 = chooce list")
-    print("3 = add words")
-    print("4 = test")
-    print("5 = quit")
-    choice = input("Choose an option!")
-    while choice != 5:
-        if choice == 1:
-            new_List()
-        elif choice == 2:
-            #choocelist
-        elif choice == 3:
-            #add words
-        elif choice == 4:
-            #test
-            
-read_Words("wordList.txt")
+    while True:
+        clear_Screen()
+        print("1 = start the test")
+        print("2 = manage lists")
+        print("3 = quit")
+        choice = input("Choose an option: ")
+        if choice == "1":
+            start_Test()
+        elif choice == "2":
+            manage_List()
+
+
 main()
