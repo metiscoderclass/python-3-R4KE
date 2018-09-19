@@ -39,6 +39,7 @@ def manage_List():
 
 def start_Test():
     print("test")
+    print(word1 + " = " + word2)
 
 def main():
     #show list
