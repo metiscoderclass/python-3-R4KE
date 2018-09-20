@@ -8,11 +8,7 @@ def clear_Screen():
 
 def read_Words(wordList):
     wordList = open(wordList)
-    for item in wordList:
-        if not item == '':
-            word1, word2 = item.strip('\n').split("=")
-            #print(word1 + " = " + word2)
-            return(word1, word2)
+    return wordList
 
 def new_List():
     clear_Screen()
@@ -27,8 +23,8 @@ def choose_List():
         if os.path.isfile(currentList):
             read_Words(currentList)
             return(currentList);
-            manage_List()
             break
+            manage_List()
         else:
             print("NOOO")
 
@@ -44,11 +40,13 @@ def manage_List():
     elif choice == "2":
         new_List()
 
-def start_Test():
-    print("test")
-    print(word1 + " = " + word2)
+def start_Test(wordList):
+    for item in wordList:
+        if not item == '':
+            word1, word2 = item.strip('\n').split("=")
+            print(word1 + " = " + word2)
 
-def main():
+def main(wordList):
     #show list
     while True:
         clear_Screen()
@@ -57,11 +55,11 @@ def main():
         print("| {:40} |".format("3 = quit"))
         choice = input("Choose an option: ")
         if choice == "1":
-            start_Test()
+            start_Test(wordList)
             break
         elif choice == "2":
             manage_List()
             break
 
 
-main()
+main(wordList)
