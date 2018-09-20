@@ -1,10 +1,11 @@
 import os
+import time
 
 screenWidth = 25;
 
 def clear_Screen():
     os.system('cls')
-    
+
 def read_Words(wordList):
     wordList = open(wordList)
     for item in wordList:
@@ -21,9 +22,13 @@ def new_List():
 
 def choose_List():
     clear_Screen()
-    newList = input("Choose list: ")
-    read_Words(newList)
-    return newList
+    currentList = input("Choose list: ")
+    if os.path.isfile(currentList):
+        read_Words(currentList)
+        return(currentList);
+        manage_List()
+    else:
+        print("ewa nee bro")
 
 def manage_List():
     clear_Screen()
@@ -35,7 +40,7 @@ def manage_List():
     if choice == "1":
         choose_List()
     elif choice == "2":
-        new_List
+        new_List()
 
 def start_Test():
     print("test")
@@ -51,8 +56,10 @@ def main():
         choice = input("Choose an option: ")
         if choice == "1":
             start_Test()
+            break
         elif choice == "2":
             manage_List()
+            break
 
 
 main()
