@@ -21,7 +21,7 @@ def choose_List():
         clear_Screen()
         currentList = input("Choose list: ")
         if os.path.isfile(currentList):
-            read_Words(currentList)
+            wordList = read_Words(currentList)
             return(currentList);
             break
             manage_List()
@@ -40,13 +40,17 @@ def manage_List():
     elif choice == "2":
         new_List()
 
-def start_Test(wordList):
+def start_Test():
+    wordList = read_Words(currentList)
     for item in wordList:
         if not item == '':
             word1, word2 = item.strip('\n').split("=")
             print(word1 + " = " + word2)
+            input = input("Define: " + word1)
+            if input == word2:
+                print("dipp")
 
-def main(wordList):
+def main():
     #show list
     while True:
         clear_Screen()
@@ -55,11 +59,11 @@ def main(wordList):
         print("| {:40} |".format("3 = quit"))
         choice = input("Choose an option: ")
         if choice == "1":
-            start_Test(wordList)
+            start_Test()
             break
         elif choice == "2":
             manage_List()
             break
 
 
-main(wordList)
+main()
