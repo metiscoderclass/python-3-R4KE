@@ -6,6 +6,7 @@ def clear_Screen():
 
 def read_list():
     # vraag gebruiker om naan van lijst
+    clear_Screen()
     wordList = {}
     currentList = input("Choose list: ")
     if not os.path.isfile(currentList):
@@ -34,9 +35,11 @@ def manage_List():
     print("| {:40} |".format("4 = go back"))
     choice = input("Choose an option: ")
     if choice == "1":
-        readList()
+        read_list()
     elif choice == "2":
         change_List()
+    else:
+        manage_List()
 
 def start_Test():
     for item in wordList:
@@ -46,6 +49,8 @@ def start_Test():
             input = input("Define: " + wordNL)
             if input == wordENG:
                 print("dipp")
+            else:
+                print("Ded")
 
 def main():
     #show list
@@ -58,6 +63,10 @@ def main():
         start_Test()
     elif choice == "2":
         manage_List()
+    elif choice == "3":
+        manage_List()
+    else:
+        main()
 
 
 main()

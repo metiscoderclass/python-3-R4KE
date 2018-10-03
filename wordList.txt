@@ -1,8 +1,3 @@
 auto=car
 couch=bank
 fiets=bicycle
-jochem=yoghum
-alien=slieren
-Midas=middes
-lit = aan
-hakan = Jurjen
