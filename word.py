@@ -1,14 +1,18 @@
 import os
 import time
+import glob, os
 
 screenWidth = 10;
+parent_dir = ""
 
 def clear_Screen():
     os.system('cls')
 
-def read_list():
+def select_list():
     # vraag gebruiker om naam van lijst
     clear_Screen()
+    for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
+        print (txt_file)
     currentList = input("Choose list: ")
     if not os.path.isfile(currentList):
         return
@@ -19,44 +23,57 @@ def read_list():
             wordNL, wordENG = item.strip('\n').split("=")
             wordList[wordNL] = wordENG
     return wordList
+    return currentList
 
 def change_list():
-    wordList = read_list()
+    print("test")
+    #while loop om te checken als er een file geselect is anders: break
     # toevoegen of verwijderen?
-    # bestand opslaan
+    # bestand opslaa n
+
+def add_Remove():
+    print("test")
+    #add or remove lists
 
 # functies = {"1": choose_list, }
 # functies[choice]()
 def manage_List():
     clear_Screen()
-    print("| {:40} |".format("1 = choose list"))
-    print("| {:40} |".format("2 = change list"))
-    print("| {:40} |".format("3 = remove list"))
-    print("| {:40} |".format("4 = go back"))
+    #print(currentList)
+    menuLine("1 = select list")
+    menuLine("2 = change list")
+    menuLine("3 = remove/add list")
+    menuLine("4 = go back")
     choice = input("Choose an option: ")
     if choice == "1":
-        read_list()
+        select_list()
     elif choice == "2":
         change_List()
-    else:
-        manage_List()
+    elif choice == "3":
+        add_Remove()
+    elif choice == "4":
+        main()
 
 def start_Test():
+    #neem de lijst en overhoor
     correct = 0
     incorrect = 0
     while True:
         for item in wordList:
             if not item == '':
                 wordNL, wordENG = item.strip('\n').split("=")
-                print(wordNL + " = " + wordENG)
                 input = input("Define: " + wordNL)
                 if input == wordENG:
+                    correct += 1
                     print("NICEEEEEE")
+                    return
                 else:
                     print("Ded")
+                    incorrect += 1
                     return
 
 def menuLine(line):
+    #print functie
     newLine = (("| {:" + str(screenWidth - 3) + "}").format(line))
     print(newLine)
 
@@ -64,15 +81,14 @@ def menuLine(line):
 def main():
     #show list
     choice = input("Choose an option: ")
-    while choice != "4":
+    while choice != "3":
         clear_Screen()
         menuLine("1 = start the test")
-        print("| {:40} |".format("1 = start the test"))
-        print("| {:40} |".format("2 = manage lists"))
-        print("| {:40} |".format("3 = quit"))
+        menuLine("2 = manage lists")
+        menuLine("3 = quit")
         choice = input("Choose an option: ")
         if choice == "1":
-            start_Test()
+            start_Test(wordList)
         elif choice == "2":
             manage_List()
         elif choice == "3":
