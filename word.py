@@ -17,12 +17,12 @@ def select_list():
     if not os.path.isfile(currentList):
         return
     wordFile = open(currentList)
-    wordList = {}
-    for item in wordFile:
-        if not item == '':
-            wordNL, wordENG = item.strip('\n').split("=")
-            wordList[wordNL] = wordENG
-    return wordList
+    wordlist = {}
+    #for item in wordFile:
+    #    if not item == '':
+    #        wordNL, wordENG = item.strip('\n').split("=")
+    #        wordList[wordNL] = wordENG
+    return wordlist
 
 def change_list():
     print("test")
@@ -58,7 +58,7 @@ def start_Test(wordlist):
     correct = 0
     incorrect = 0
     while True:
-        for item in wordList:
+        for item in wordlist:
             if not item == '':
                 wordNL, wordENG = item.strip('\n').split("=")
                 input = input("Define: " + wordNL)
