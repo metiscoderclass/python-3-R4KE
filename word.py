@@ -23,7 +23,6 @@ def select_list():
             wordNL, wordENG = item.strip('\n').split("=")
             wordList[wordNL] = wordENG
     return wordList
-    return currentList
 
 def change_list():
     print("test")
@@ -54,7 +53,7 @@ def manage_List():
     elif choice == "4":
         main()
 
-def start_Test():
+def start_Test(wordlist):
     #neem de lijst en overhoor
     correct = 0
     incorrect = 0
@@ -80,19 +79,22 @@ def menuLine(line):
 
 def main():
     #show list
+    clear_Screen()
+    menuLine("1 = Start the test")
+    menuLine("2 = Select a list")
+    menuLine("3 = Manage lists")
+    menuLine("4 = quit")
     choice = input("Choose an option: ")
-    while choice != "3":
-        clear_Screen()
-        menuLine("1 = start the test")
-        menuLine("2 = manage lists")
-        menuLine("3 = quit")
-        choice = input("Choose an option: ")
+    wordlist = {}
+    while choice != "4":
+        if choice in ["1", "3"]:
+            wordlist = select_list()
         if choice == "1":
-            start_Test(wordList)
+            start_Test(wordlist)
         elif choice == "2":
-            manage_List()
+            select_list()
         elif choice == "3":
             manage_List()
-
+        choice = input("Choose an option: ")
 
 main()
