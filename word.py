@@ -3,18 +3,19 @@ import time
 import glob, os
 
 screenWidth = 50;
+delay = 0.1
 parent_dir = ""
 
 def clear_Screen():
     os.system('cls')
 
 def select_list():
-    # vraag gebruiker om naam van lijst
     clear_Screen()
     border_line()
     menu_Line("Choose a list:")
     for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
         menu_Line("• " + txt_file)
+        time.sleep(delay)
     border_line()
 
     currentList = input("Choose list: ")
@@ -28,12 +29,16 @@ def select_list():
         if not item == '':
             wordNL, wordENG = item.strip('\n').split("=")
             worddict[wordNL] = wordENG
+
     wordFile.close()
     return worddict
 
 def add_words(worddict):
-    for key, value in worddict():
-        print(key, value)
+    clear_Screen()
+    border_line()
+    for i in worddict:
+        menu_Line(i + " = " + worddict[i])
+    border_line()
 
 def remove_words():
     pass
@@ -84,7 +89,6 @@ def border_line():
 def menu_Line(line):
     newLine = (("| {:" + str(screenWidth) + "} |").format(line))
     print(newLine)
-
 
 def main():
     #show list

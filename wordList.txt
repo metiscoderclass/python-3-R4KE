@@ -2,3 +2,6 @@ auto=car
 couch=bank
 fiets=bicycle
 deur=door
+poep=poop
+jochem=yoghum
+vuur=lit
