@@ -12,34 +12,38 @@ def select_list():
     # vraag gebruiker om naam van lijst
     clear_Screen()
     border_line()
+    menu_Line("Choose a list:")
     for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
         menu_Line("• " + txt_file)
     border_line()
+
     currentList = input("Choose list: ")
     if not os.path.isfile(currentList):
         return
+
     wordFile = open(currentList)
     worddict = {}
+
+    for item in wordFile:
+        if not item == '':
+            wordNL, wordENG = item.strip('\n').split("=")
+            worddict[wordNL] = wordENG
+    wordFile.close()
     return worddict
 
 def add_words(worddict):
-    for item in worddict:
-        print(item)
-    newword = input("Add word: ")
-    worddict.write(newword)
-    worddict.close()
-
-    #add or remove lists
+    for key, value in worddict():
+        print(key, value)
 
 def remove_words():
-    for item in worddict:
-        print(item)
+    pass
+    #for item in worddict:
+        #print(worddict[item])
     #add or remove lists
 
-# functies = {"1": choose_list, }
-# functies[choice]()
 def manage_List(worddict):
     clear_Screen()
+    print(worddict)
     border_line()
     menu_Line("1 = add list")
     menu_Line("2 = remove list")
@@ -56,7 +60,6 @@ def manage_List(worddict):
         main()
 
 def start_Test(worddict):
-    #neem de lijst en overhoor
     correct = 0
     incorrect = 0
     while True:
@@ -93,7 +96,7 @@ def main():
     border_line()
     choice = input("Choose an option: ")
     worddict = {}
-    while choice != "4":
+    while choice != "3":
         if choice in ["1", "2"]:
             worddict = select_list()
         if choice == "1":
