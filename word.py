@@ -93,6 +93,7 @@ def menu_Line(line):
 def main():
     #show list
     clear_Screen()
+    menu_Line("Welkom bij Jurre's overhoor programma.")
     border_line()
     menu_Line("1 = Start the test")
     menu_Line("2 = Manage lists")
