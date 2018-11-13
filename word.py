@@ -11,16 +11,26 @@ def clear_Screen():
 
 def select_list():
     clear_Screen()
+    menu_Line("Type a existing list.")
     border_line()
     menu_Line("Choose a list:")
     for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
         menu_Line("• " + txt_file)
-        time.sleep(delay)
     border_line()
 
     currentList = input("Choose list: ")
-    if not os.path.isfile(currentList):
-        return
+    while True:
+        if not os.path.isfile(currentList):
+            clear_Screen()
+            menu_Line("That list doesn't even exist bro!")
+            border_line()
+            menu_Line("Choose a list:")
+            for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
+                menu_Line("• " + txt_file)
+            border_line()
+            currentList = input("Choose list: ")
+        else:
+            break
 
     wordFile = open(currentList)
     worddict = {}
@@ -39,6 +49,7 @@ def add_words(worddict):
     for i in worddict:
         menu_Line(i + " = " + worddict[i])
     border_line()
+    menu_Line("Type een key")
 
 def remove_words():
     pass
@@ -93,7 +104,7 @@ def menu_Line(line):
 def main():
     #show list
     clear_Screen()
-    menu_Line("Welkom bij Jurre's overhoor programma.")
+    menu_Line("Welcome.")
     border_line()
     menu_Line("1 = Start the test")
     menu_Line("2 = Manage lists")
