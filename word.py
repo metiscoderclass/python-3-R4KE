@@ -49,13 +49,15 @@ def add_words(worddict):
     for i in worddict:
         menu_Line(i + " = " + worddict[i])
     border_line()
-    menu_Line("Type een key")
+    menu_Line("Type a key")
 
 def remove_words():
-    pass
-    #for item in worddict:
-        #print(worddict[item])
-    #add or remove lists
+    clear_Screen()
+    border_line()
+    for i in worddict:
+        menu_Line(i + " = " + worddict[i])
+    border_line()
+    menu_Line("Type the word you want to remove")
 
 def manage_List(worddict):
     clear_Screen()
