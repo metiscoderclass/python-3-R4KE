@@ -47,10 +47,11 @@ def select_list():
 def add_words(worddict):
     clear_Screen()
     border_line()
-    for i in worddict:
-        menu_Line(i + " = " + worddict[i])
+    for item in worddict:
+        menu_Line(item + " = " + worddict[item])
     border_line()
     menu_Line("Type a key")
+    choice = input("    :   ")
 
 def remove_words():
     clear_Screen()
@@ -65,19 +66,24 @@ def manage_List(worddict):
     print(worddict)
     menu_Line("Do something with it.")
     border_line()
-    menu_Line("1 = add list")
-    menu_Line("2 = remove list")
+    menu_Line("1 = make list")
+    menu_Line("2 = delete list")
+    menu_Line("")
     menu_Line("3 = add words")
     menu_Line("4 = remove words")
+    menu_Line("")
     menu_Line("5 = go back")
     border_line()
     input("    :   ")
-    if choice == "3":
-        add_words(worddict)
-    elif choice == "4":
-        remove_words(worddict)
-    elif choice == "5":
-        main()
+    while True:
+        if choice == "3":
+            add_words(worddict)
+        elif choice == "4":
+            remove_words(worddict)
+        elif choice == "5":
+            break
+        else:
+            warning()
 
 def start_Test(worddict):
     correct = 0
@@ -104,6 +110,7 @@ def warning():
     clear_Screen()
     for i in range(2):
         menu_Line(" [!]  ERROR  [!]")
+        border_line()
         time.sleep(delay)
         clear_Screen()
         time.sleep(delay/2)
