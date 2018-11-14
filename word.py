@@ -32,15 +32,12 @@ def select_list():
             currentList = input("    :   ")
         else:
             break
-
     wordFile = open(currentList)
     worddict = {}
-
     for item in wordFile:
         if not item == '':
             wordNL, wordENG = item.strip('\n').split("=")
             worddict[wordNL] = wordENG
-
     wordFile.close()
     return worddict
 
@@ -53,7 +50,7 @@ def add_words(worddict):
     menu_Line("Type a key")
     choice = input("    :   ")
 
-def remove_words():
+def remove_words(worddict):
     clear_Screen()
     border_line()
     for i in worddict:
@@ -75,7 +72,7 @@ def manage_List(worddict):
     menu_Line("5 = go back")
     border_line()
     input("    :   ")
-    while True:
+    while choice != 5:
         if choice == "3":
             add_words(worddict)
         elif choice == "4":
