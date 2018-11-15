@@ -43,20 +43,30 @@ def select_list():
 
 def add_words(worddict):
     clear_Screen()
+    menu_Line("Name the dutch word")
     border_line()
-    for item in worddict:
-        menu_Line(item + " = " + worddict[item])
+    keyChoice = input("    :   ")
+    clear_Screen()
+    menu_Line("Name the english translation of '" + keyChoice + "'.")
     border_line()
-    menu_Line("Type a key")
-    choice = input("    :   ")
+    valueChoice = input("    :   ")
 
 def remove_words(worddict):
-    clear_Screen()
-    border_line()
-    for i in worddict:
-        menu_Line(i + " = " + worddict[i])
-    border_line()
-    menu_Line("Type the word you want to remove")
+    while True:
+        clear_Screen()
+        menu_Line("Type the key you want to remove")
+        menu_Line("1 = save and go back")
+        border_line()
+        for item in worddict:
+            menu_Line(item + " = " + worddict[item])
+        border_line()
+        keyChoice = input("    :   ")
+        if keyChoice in worddict:
+            del worddict[valueChoice]
+        elif keyChoice == "1":
+            manage_List(worddict)
+        else:
+            warning()
 
 def manage_List(worddict):
     clear_Screen()
@@ -71,7 +81,7 @@ def manage_List(worddict):
     menu_Line("")
     menu_Line("5 = go back")
     border_line()
-    input("    :   ")
+    choice = input("    :   ")
     while choice != 5:
         if choice == "3":
             add_words(worddict)
