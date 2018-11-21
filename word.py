@@ -1,5 +1,6 @@
 import os
 import time
+import random
 import glob, os
 
 screenWidth = 50;
@@ -62,7 +63,7 @@ def remove_words(worddict):
         border_line()
         keyChoice = input("    :   ")
         if keyChoice in worddict:
-            del worddict[valueChoice]
+            del worddict[keyChoice]
         elif keyChoice == "1":
             manage_List(worddict)
         else:
@@ -70,44 +71,50 @@ def remove_words(worddict):
 
 def manage_List(worddict):
     clear_Screen()
-    print(worddict)
+    print("Debug: " + str(worddict))
     menu_Line("Do something with it.")
     border_line()
-    menu_Line("1 = make list")
-    menu_Line("2 = delete list")
+    menu_Line("1 = add words")
+    menu_Line("2 = remove words")
     menu_Line("")
-    menu_Line("3 = add words")
-    menu_Line("4 = remove words")
-    menu_Line("")
-    menu_Line("5 = go back")
+    menu_Line("3 = go back")
     border_line()
     choice = input("    :   ")
-    while choice != 5:
-        if choice == "3":
+    while choice != 3:
+        if choice == "1":
             add_words(worddict)
-        elif choice == "4":
+        elif choice == "2":
             remove_words(worddict)
-        elif choice == "5":
+        elif choice == "3":
             break
         else:
             warning()
 
 def start_Test(worddict):
+    percentage = 100
     correct = 0
     incorrect = 0
     while True:
         for item in worddict:
+            clear_Screen()
             if not item == '':
-                wordNL, wordENG = item.strip('\n').split("=")
-                input = input("Define: " + wordNL)
-                if input == wordENG:
+                menu_Line("1 = Exit")
+                border_line()
+                menu_Line("Correct: " + str(correct))
+                menu_Line("Incorrect: " + str(incorrect))
+                menu_Line(str(round(percentage)) + "% is correct")
+                border_line()
+                menu_Line("Translate: " + item)
+                guessInput = input("    :   ")
+                if guessInput == worddict[item]:
                     correct += 1
-                    print("NICEEEEEE")
+                elif guessInput == "1":
                     return
                 else:
                     print("Ded")
                     incorrect += 1
-                    return
+                if (correct + incorrect) >= 1:
+                    percentage = (100.0*correct/(correct + incorrect))
 
 def border_line():
     borderWidth = screenWidth + 4
@@ -130,7 +137,7 @@ def menu_Line(line):
 def main():
     #show list
     clear_Screen()
-    menu_Line("Welcome, choose what you want to do.")
+    menu_Line("Welcome, select what you want to do.")
     border_line()
     menu_Line("1 = Start the test")
     menu_Line("2 = Manage lists")
