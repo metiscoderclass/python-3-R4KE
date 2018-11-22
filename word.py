@@ -43,17 +43,30 @@ def select_list():
     return worddict
 
 def add_words(worddict):
-    clear_Screen()
-    menu_Line("Name the dutch word")
-    border_line()
-    keyChoice = input("    :   ")
-    clear_Screen()
-    menu_Line("Name the english translation of '" + keyChoice + "'.")
-    border_line()
-    valueChoice = input("    :   ")
+    while True:
+        clear_Screen()
+        menu_Line("Name the dutch word")
+        border_line()
+        keyChoice = input("    :   ")
+        clear_Screen()
+        menu_Line("Name the english translation of '" + keyChoice + "'.")
+        border_line()
+        valueChoice = input("    :   ")
 
 def remove_words(worddict):
-    while True:
+    clear_Screen()
+    menu_Line("Type the key you want to remove")
+    menu_Line("1 = save and go back")
+    border_line()
+    for item in worddict:
+        menu_Line(item + " = " + worddict[item])
+    border_line()
+    keyChoice = input("    :   ")
+    if keyChoice in worddict:
+        del worddict[keyChoice]
+    else:
+        warning()
+    while keyChoice not in ["1"]:
         clear_Screen()
         menu_Line("Type the key you want to remove")
         menu_Line("1 = save and go back")
@@ -64,10 +77,9 @@ def remove_words(worddict):
         keyChoice = input("    :   ")
         if keyChoice in worddict:
             del worddict[keyChoice]
-        elif keyChoice == "1":
-            manage_List(worddict)
         else:
-            break
+            warning()
+    return worddict
 
 def manage_List(worddict):
     clear_Screen()
@@ -80,7 +92,7 @@ def manage_List(worddict):
     menu_Line("3 = go back")
     border_line()
     choice = input("    :   ")
-    while True:
+    while choice != 3:
         if choice == "1":
             add_words(worddict)
         elif choice == "2":
@@ -112,6 +124,7 @@ def start_Test(worddict):
             if not item == '':
                 menu_Line("1 = Exit")
                 border_line()
+                menu_Line("Previous " + worddict[item])
                 menu_Line("Correct: " + str(correct))
                 menu_Line("Incorrect: " + str(incorrect))
                 menu_Line(str(round(percentage)) + "% is correct")
@@ -127,10 +140,6 @@ def start_Test(worddict):
                     incorrect += 1
                 if (correct + incorrect) >= 1:
                     percentage = (100.0*correct/(correct + incorrect))
-def game_over():
-    clear_Screen()
-    menu_Line("You've lost")
-    border_line()
 
 def border_line():
     borderWidth = screenWidth + 4
