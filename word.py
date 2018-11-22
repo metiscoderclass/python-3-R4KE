@@ -40,11 +40,10 @@ def select_list():
             wordNL, wordENG = item.strip('\n').split("=")
             worddict[wordNL] = wordENG
     wordFile.close()
-    return worddict
+    return worddict, currentList
 
-def add_words(worddict):
+def add_words(worddict, currentList):
     clear_Screen()
-    menu_Line("1 = exit")
     print("Debug: " + str(worddict))
     menu_Line("Name the dutch word")
     border_line()
@@ -61,8 +60,11 @@ def add_words(worddict):
         menu_Line("Name the dutch word")
         border_line()
         keyChoice = input("    :   ")
+        file = open(currentList, 'a')
+        file.write(keyChoice + "=" + valueChoice + "\n")
+        file.close
 
-def remove_words(worddict):
+def remove_words(worddict, currentList):
     clear_Screen()
     menu_Line("Type the key you want to remove")
     menu_Line("1 = save and go back")
@@ -102,13 +104,13 @@ def show_menu_manage_list(worddict):
     choice = input("    :   ")
     return choice
 
-def manage_List(worddict):
+def manage_List(worddict, currentList):
     choice = show_menu_manage_list(worddict)
     while choice != 3:
         if choice == "1":
-            add_words(worddict)
+            add_words(worddict, currentList)
         elif choice == "2":
-            remove_words(worddict)
+            remove_words(worddict, currentList)
         elif choice == "3":
             break
         else:
@@ -184,11 +186,11 @@ def main():
     choice = input("    :   ")
     while choice != "4":
         if choice in ["1", "2"]:
-            worddict = select_list()
+            worddict, currentList = select_list()
         if choice == "1":
             start_Test(worddict)
         elif choice == "2":
-            manage_List(worddict)
+            manage_List(worddict, currentList)
         elif choice == "3":
             make_List()
         else:
