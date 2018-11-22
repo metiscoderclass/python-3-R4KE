@@ -67,7 +67,7 @@ def remove_words(worddict):
         elif keyChoice == "1":
             manage_List(worddict)
         else:
-            warning()
+            break
 
 def manage_List(worddict):
     clear_Screen()
@@ -80,7 +80,7 @@ def manage_List(worddict):
     menu_Line("3 = go back")
     border_line()
     choice = input("    :   ")
-    while choice != 3:
+    while True:
         if choice == "1":
             add_words(worddict)
         elif choice == "2":
@@ -90,11 +90,23 @@ def manage_List(worddict):
         else:
             warning()
 
+def make_List():
+    while True:
+        clear_Screen()
+        menu_Line("Name the name of the new list.")
+        menu_Line("1 = go back")
+        border_line()
+        choice = input("    :   ")
+        if choice != "1":
+            newFile = open(choice +".txt","w+")
+        else:
+            break
+
 def start_Test(worddict):
     percentage = 100
     correct = 0
     incorrect = 0
-    while True:
+    while percentage > 25:
         for item in worddict:
             clear_Screen()
             if not item == '':
@@ -115,6 +127,10 @@ def start_Test(worddict):
                     incorrect += 1
                 if (correct + incorrect) >= 1:
                     percentage = (100.0*correct/(correct + incorrect))
+def game_over():
+    clear_Screen()
+    menu_Line("You've lost")
+    border_line()
 
 def border_line():
     borderWidth = screenWidth + 4
@@ -129,28 +145,29 @@ def warning():
         clear_Screen()
         time.sleep(delay/2)
 
-#print functie
 def menu_Line(line):
     newLine = (("| {:" + str(screenWidth) + "} |").format(line))
     print(newLine)
 
 def main():
-    #show list
     clear_Screen()
     menu_Line("Welcome, select what you want to do.")
     border_line()
     menu_Line("1 = Start the test")
     menu_Line("2 = Manage lists")
-    menu_Line("3 = quit")
+    menu_Line("3 = Make new list")
+    menu_Line("4 = quit")
     border_line()
     choice = input("    :   ")
-    while choice != "3":
+    while choice != "4":
         if choice in ["1", "2"]:
             worddict = select_list()
         if choice == "1":
             start_Test(worddict)
         elif choice == "2":
             manage_List(worddict)
+        elif choice == "3":
+            make_List()
         else:
             warning()
         clear_Screen()
@@ -158,7 +175,8 @@ def main():
         border_line()
         menu_Line("1 = Start the test")
         menu_Line("2 = Manage lists")
-        menu_Line("3 = quit")
+        menu_Line("3 = Make new list")
+        menu_Line("4 = quit")
         border_line()
         choice = input("    :   ")
 
