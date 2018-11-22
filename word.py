@@ -43,15 +43,24 @@ def select_list():
     return worddict
 
 def add_words(worddict):
-    while True:
-        clear_Screen()
-        menu_Line("Name the dutch word")
+    clear_Screen()
+    menu_Line("1 = exit")
+    print("Debug: " + str(worddict))
+    menu_Line("Name the dutch word")
+    border_line()
+    keyChoice = input("    :   ")
+    while keyChoice != "1":
         border_line()
-        keyChoice = input("    :   ")
-        clear_Screen()
         menu_Line("Name the english translation of '" + keyChoice + "'.")
         border_line()
         valueChoice = input("    :   ")
+        worddict[keyChoice] = valueChoice
+        clear_Screen()
+        menu_Line("1 = exit")
+        print("Debug: " + str(worddict))
+        menu_Line("Name the dutch word")
+        border_line()
+        keyChoice = input("    :   ")
 
 def remove_words(worddict):
     clear_Screen()
@@ -81,9 +90,8 @@ def remove_words(worddict):
             warning()
     return worddict
 
-def manage_List(worddict):
+def show_menu_manage_list(worddict):
     clear_Screen()
-    print("Debug: " + str(worddict))
     menu_Line("Do something with it.")
     border_line()
     menu_Line("1 = add words")
@@ -92,6 +100,10 @@ def manage_List(worddict):
     menu_Line("3 = go back")
     border_line()
     choice = input("    :   ")
+    return choice
+
+def manage_List(worddict):
+    choice = show_menu_manage_list(worddict)
     while choice != 3:
         if choice == "1":
             add_words(worddict)
@@ -101,6 +113,8 @@ def manage_List(worddict):
             break
         else:
             warning()
+        #choice = input("    :   ")
+        choice = show_menu_manage_list(worddict)
 
 def make_List():
     while True:
