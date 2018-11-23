@@ -1,2 +1,5 @@
 kak=poop
 1=shit
+kak=laptop
+1=drek
+1=pop
