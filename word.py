@@ -140,7 +140,7 @@ def start_Test(worddict):
             if not item == '':
                 menu_Line("1 = Exit")
                 border_line()
-                menu_Line("Previous " + worddict[item])
+                #menu_Line("Previous " + worddict[item])
                 menu_Line("Correct: " + str(correct))
                 menu_Line("Incorrect: " + str(incorrect))
                 menu_Line(str(round(percentage)) + "% is correct")
