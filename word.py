@@ -15,8 +15,8 @@ def select_list():
     menu_Line("Type a existing list.")
     border_line()
     menu_Line("Choose a list:")
-    for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
-        menu_Line("• " + txt_file)
+    for wrd_file in glob.glob(os.path.join(parent_dir, '*.wrd')):
+        menu_Line("• " + wrd_file)
     border_line()
 
     currentList = input("    :   ")
@@ -27,8 +27,8 @@ def select_list():
             menu_Line("That list doesn't even exist bro!")
             border_line()
             menu_Line("Choose a list:")
-            for txt_file in glob.glob(os.path.join(parent_dir, '*.txt')):
-                menu_Line("• " + txt_file)
+            for wrd_file in glob.glob(os.path.join(parent_dir, '*.wrd')):
+                menu_Line("• " + wrd_file)
             border_line()
             currentList = input("    :   ")
         else:
@@ -115,7 +115,6 @@ def manage_List(worddict, currentList):
             break
         else:
             warning()
-        #choice = input("    :   ")
         choice = show_menu_manage_list(worddict)
 
 def make_List():
@@ -131,7 +130,7 @@ def make_List():
         border_line()
         choice = input("    :   ")
         if choice != "1":
-            newFile = open(choice +".txt","w+")
+            newFile = open(choice +".wrd","w+")
         else:
             break
 
@@ -145,7 +144,6 @@ def start_Test(worddict):
             if not item == '':
                 menu_Line("1 = Exit")
                 border_line()
-                #menu_Line("Previous " + worddict[item])
                 menu_Line("Correct: " + str(correct))
                 menu_Line("Incorrect: " + str(incorrect))
                 menu_Line(str(round(percentage)) + "% is correct")
