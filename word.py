@@ -20,7 +20,7 @@ def select_list():
     border_line()
 
     currentList = input("    :   ")
-    while True:
+    while currentList != "":
         if not os.path.isfile(currentList):
             warning()
             clear_Screen()
@@ -119,9 +119,14 @@ def manage_List(worddict, currentList):
         choice = show_menu_manage_list(worddict)
 
 def make_List():
-    while True:
+    clear_Screen()
+    menu_Line("Name the new list.")
+    menu_Line("1 = go back")
+    border_line()
+    choice = input("    :   ")
+    while choice != "":
         clear_Screen()
-        menu_Line("Name the name of the new list.")
+        menu_Line("Name the new list.")
         menu_Line("1 = go back")
         border_line()
         choice = input("    :   ")
