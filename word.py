@@ -117,17 +117,17 @@ def manage_List(worddict, currentList):
             warning()
         choice = show_menu_manage_list(worddict)
 
-def make_List():
+def make_listUI():
     clear_Screen()
     menu_Line("Name the new list.")
     menu_Line("1 = go back")
     border_line()
+
+def make_List():
+    make_listUI()
     choice = input("    :   ")
     while choice != "":
-        clear_Screen()
-        menu_Line("Name the new list.")
-        menu_Line("1 = go back")
-        border_line()
+        make_listUI()
         choice = input("    :   ")
         if choice != "1":
             newFile = open(choice +".wrd","w+")
