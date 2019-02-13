@@ -177,7 +177,7 @@ def menu_Line(line):
     newLine = (("| {:" + str(screenWidth) + "} |").format(line))
     print(newLine)
 
-def main():
+def mainUI():
     clear_Screen()
     menu_Line("Welcome, select what you want to do.")
     border_line()
@@ -186,6 +186,9 @@ def main():
     menu_Line("3 = Make new list")
     menu_Line("4 = quit")
     border_line()
+
+def main():
+    mainUI()
     choice = input("    :   ")
     while choice != "4":
         if choice in ["1", "2"]:
@@ -198,14 +201,7 @@ def main():
             make_List()
         else:
             warning()
-        clear_Screen()
-        menu_Line("Yo, choose what you want to do.")
-        border_line()
-        menu_Line("1 = Start the test")
-        menu_Line("2 = Manage lists")
-        menu_Line("3 = Make new list")
-        menu_Line("4 = quit")
-        border_line()
+        mainUI()
         choice = input("    :   ")
 
 main()
