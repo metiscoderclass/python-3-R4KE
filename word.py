@@ -18,7 +18,6 @@ def select_list():
     for wrd_file in glob.glob(os.path.join(parent_dir, '*.wrd')):
         menu_Line("• " + wrd_file)
     border_line()
-
     currentList = input("    :   ")
     while currentList != "":
         if not os.path.isfile(currentList):
